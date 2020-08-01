@@ -27,4 +27,12 @@ class ClosedRangeTest extends TestCase
     {
         $this->assertEquals("[3,8]", $this->sut->getFormattedClosedRange(3, 8));
     }
+
+    /**
+     * @test
+     */
+    public function 整数以外を引数に渡すとExceptionを返す()
+    {
+        $this->expectExceptionObject($this->sut->getFormattedClosedRange('3','8'));
+    }
 }

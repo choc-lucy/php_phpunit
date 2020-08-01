@@ -58,4 +58,24 @@ class ClosedRangeTest extends TestCase
         $target = new ClosedRange(1, 4);
         $this->assertTrue($sut->isEqual($target));
     }
+
+    /**
+     * @test
+     */
+    public function 別の閉区間と下端点と上端点が等しくないことを判定する()
+    {
+        $sut = new ClosedRange(3, 8);
+        $target = new ClosedRange(1, 4);
+        $this->assertFalse($sut->isEqual($target));
+    }
+
+    /**
+     * @test
+     */
+    public function 別の区間が完全に含まれるかを判定する()
+    {
+        $sut = new ClosedRange(3, 8);
+        $target = new ClosedRange(4,6);
+        $this->assertTrue($sut->isInclude($target));
+    }
 }

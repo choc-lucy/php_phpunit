@@ -6,8 +6,8 @@ use Exception;
 
 class ClosedRange
 {
-    private int $lowerEndPoint;
-    private int $upperEndPoint;
+    public int $lowerEndPoint;
+    public int $upperEndPoint;
 
     public function __construct(int $lowerEndPoint, int $upperEndPoint)
     {
@@ -26,5 +26,11 @@ class ClosedRange
     public function isIncludedClosedRange(int $targetPoint): bool
     {
         return $this->lowerEndPoint <= $targetPoint && $targetPoint <= $this->upperEndPoint;
+    }
+
+    public function isEqual(ClosedRange $target): bool
+    {
+        return $this->lowerEndPoint === $target->lowerEndPoint
+        && $this->upperEndPoint === $target->upperEndPoint;
     }
 }

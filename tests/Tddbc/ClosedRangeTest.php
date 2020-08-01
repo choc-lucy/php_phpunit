@@ -32,12 +32,13 @@ class ClosedRangeTest extends TestCase
     /**
      * @test
      * @expectedExceptionMessage not int argument
+     * @doesNotPerformAssertions
+     * // Exceptionが投げられることのみテストしたかったため
      */
     public function 整数以外を引数に渡すとExceptionを返す()
     {
         $sut = new ClosedRange(1, 4);
         $sut->getFormattedClosedRange('3','8');
-        $this->assertTrue(true);
     }
 
     /**

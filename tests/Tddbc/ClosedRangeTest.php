@@ -2,6 +2,7 @@
 
 namespace Tddbc;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 class ClosedRangeTest extends TestCase
@@ -33,6 +34,10 @@ class ClosedRangeTest extends TestCase
      */
     public function 整数以外を引数に渡すとExceptionを返す()
     {
-        $this->expectExceptionObject($this->sut->getFormattedClosedRange('3','8'));
+        try {
+            $this->sut->getFormattedClosedRange('3','8');
+        } catch (Exception $e) {
+            $this->assertTrue(true);
+        }
     }
 }

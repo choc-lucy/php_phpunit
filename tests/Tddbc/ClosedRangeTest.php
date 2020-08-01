@@ -21,12 +21,12 @@ class ClosedRangeTest extends TestCase
 
     /**
      * @test
-     * "[3,8]"を返す
+     * "[下端点, 上端点]"を返す
      */
     public function _3_8を引数に与えれば､決められたフォーマットの文字列を返す()
     {
-        $sut = new ClosedRange(1, 4);
-        $this->assertEquals("[3,8]", $sut->getFormattedClosedRange(3, 8));
+        $sut = new ClosedRange(3, 8);
+        $this->assertEquals("[3,8]", strval($sut));
     }
 
     /**
@@ -37,16 +37,24 @@ class ClosedRangeTest extends TestCase
      */
     public function 整数以外を引数に渡すとExceptionを返す()
     {
-        $sut = new ClosedRange(1, 4);
-        $sut->getFormattedClosedRange('3','8');
+        $sut = new ClosedRange('3','8');
     }
 
     /**
      * @test
      */
-    public function 引数で渡した整数が下端点よりも大きく､上端点よりも小さいことが判定できる()
+    public function 引数で渡した整数が下端点以上かつ上端点以下であることが判定できる()
     {
         $sut = new ClosedRange(1, 4);
         $this->assertTrue($sut->isIncludedClosedRange(3));
     }
+
+    // 後で
+    // /**
+    //  * @test
+    //  */
+    // public function 別の閉区間と下端点と上端点が等しいかどうかを判定できる()
+    // {
+    //     $sut = new ClosedRange(1,4);
+    // }
 }

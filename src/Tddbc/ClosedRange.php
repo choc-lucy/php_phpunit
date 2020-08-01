@@ -11,20 +11,20 @@ class ClosedRange
 
     public function __construct(int $lowerEndPoint, int $upperEndPoint)
     {
+        if (!(is_int($lowerEndPoint) && is_int($upperEndPoint))) {
+            throw new Exception();
+        }
         $this->lowerEndPoint = $lowerEndPoint;
         $this->upperEndPoint = $upperEndPoint;
     }
 
-    public function getFormattedClosedRange(int $lowerEndPoint, int $upperEndPoint): string
+    public function __toString()
     {
-        if (!(is_int($lowerEndPoint) && is_int($upperEndPoint))) {
-            throw new Exception();
-        }
-        return "[". $lowerEndPoint.",". $upperEndPoint. "]";
+        return "[". $this->lowerEndPoint.",". $this->upperEndPoint. "]";
     }
 
     public function isIncludedClosedRange(int $targetPoint): bool
     {
-        return true;
+        return $this->lowerEndPoint <= $targetPoint && $targetPoint <= $this->upperEndPoint;
     }
 }
